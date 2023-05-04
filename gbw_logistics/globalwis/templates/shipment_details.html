@@ -1,0 +1,121 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>  
+<form method="post">
+    {% csrf_token %}
+    <h2>Shipment Details</h2>
+    <p>What are you shipping?</p>
+    <button type="button" id="documents-button">Documents</button>
+    <button type="button" id="packages-button">Packages</button>
+    <div id="documents-fields" style="display: none;">
+      <label for="shipping_type">Shipment Type</label>
+      <input type="text" class="form-control" id="shipping_type_document" name="shipping_type_document" value="document" readonly>
+      <p>Describe the documents in your shipment</p>
+      <label for="description">Select a description</label>
+      <select name="description" id="description">
+        <option value="annual-reports">Annual Reports</option>
+        <option value="bill-of-lading">Bill of Lading</option>
+        <option value="blank-forms">Blank Forms</option>
+        <option value="blueprints">Blueprints</option>
+        <option value="business-cards">Business Cards</option>
+        <option value="calenders">Calenders</option>
+        <option value="catalogs">Catalogs</option>
+        <option value="certificates">Certificates</option>
+        <option value="charts-graph">Charts, graphs</option>
+        <option value="completed-forms">Completed Forms</option>
+        <option value="contract">Contract</option>
+        <option value="credit-note">Credit Note</option>
+        <option value="deeds">Deeds</option>
+        <option value="diplomatic-mail">Diplomatic mail</option>
+        <option value="documents-business">Documents - general business</option>
+        <option value="educational-documents">Educational Printed Document</option>
+        <option value="examination-papers">Examination Papers</option>
+        <option value="identity-documents">Identity Documents</option>
+        <option value="invoices-blank">Invoices - blank</option>
+        <option value="letter">Letter</option>
+        <option value="manuals">Manuals</option>
+        <option value="maps">Maps</option>
+        <option value="music">Music - printed, manuscript</option>
+        <option value="passports">Passports</option>
+        <option value="photographs">Photographs</option>
+        <option value="visa">Visa Applications</option>
+      </select>
+      <label for="reference">Reference (appears on shipping label/waybill)</label>
+      <input type="text" name="reference" id="reference">
+      <label for="value">What is the value of your shipment?</label>
+      <input type="text" name="value" id="value">
+    </div>
+    <div id="packages-fields" style="display: none;">
+      <label for="shipping_type">Shipment Type</label>
+      <input type="text" class="form-control" id="shipping_type" name="shipping_type" value="packages" readonly>
+      <p>Packages are goods, merchandise or commodities for personal or commercial purposes.</p>
+      <p>What is the purpose of your shipment?</p>
+      <label for="purpose">Select one</label>
+      <select name="purpose" id="purpose">
+        <option value="gift">Gift</option>
+        <option value="personal">Personal</option>
+        <option value="commercial">Commercial</option>
+        <option value="sample">Sample</option>
+        <option value="return-for-repair">Return for Repair</option>
+        <option value="return-after-repair">Return after Repair</option>
+        <option value="claim">Claim</option>
+        <option value="return-to-seller">Return to Seller</option>
+      </select>
+      <p>Describe each unique item in your shipment separately.</p>
+      <p>Avoid shipment delays! Accuracy matters to customs authorities. Add each unique item one at a time. Provide details in English only.</p>
+      <label for="item_description">Unique Item Description</label>
+      <input type="text" name="item_description" id="item_description">
+      <label for="manufacturer_id">Manufacturer's ID</label>
+      <input type="text" name="manufacturer_id" id="manufacturer_id">
+      <label for="quantity">Quantity</label>
+      <input type="text" name="quantity" id="quantity">
+      <label for="units">Units (How the item is packaged)</label>
+      <select name="units" id="units">
+        <option value="boxes">Boxes</option>
+        <option value="centimeters">Centimeters</option>
+        <option value="dozen">Dozen</option>
+        <option value="pieces">Pieces</option>
+        <option value="grams">Grams</option>
+        <option value="kilograms">Kilograms</option>
+        <option value="liters">Liters</option>
+        <option value="meters">Meters</option>
+        <option value="no-unit">No unit required</option>
+        <option value="number">Number</option>
+        <option value="ounces">Ounces</option>
+        <option value="pounds">Pounds</option>
+        <option value="square-feet">Square feet</option>
+        <option value="cartons">Cartons</option>
+        <option value="feet">Feet</option>
+        <option value="inches">Inches</option>
+        <option value="yards">Yards</option>
+      </select>
+      <label for="item_value">Value (Per Item)</label>
+      <input type="text" name="item_value" id="item_value">
+      <label for="weight">Weight (Per Item)</label>
+      <input type="text" name="weight" id="weight">
+      <label for="item_origin">Where was the item made?</label>
+      <input type="text" name="item_origin" id="item_origin">
+      <label for="schedule_b">Schedule B</label>
+      <input type="text" name="schedule_b" id="schedule_b">
+      <label for="invoice_value">Invoice Value</label>
+      <input type="text" name="invoice_value" id="invoice_value">
+    </div>
+    <input type="submit" value="Submit">
+</form>
+  
+
+<script>
+  $(document).ready(function() {
+    $('#documents-button').click(function() {
+      $('#packages-fields').hide();
+      $('#documents-fields').show();
+    });
+
+    $('#packages-button').click(function() {
+      $('#documents-fields').hide();
+      $('#packages-fields').show();
+    });
+  });
+</script>
+
+  

@@ -1,0 +1,17 @@
+<h1>Quote Summary</h1>
+{% if price %}
+    <h4>Price: ${{ price }}</h4>
+    {% if distance %}
+      <h4>Distance: {{ distance }} km</h4>
+    {% endif %}
+    {% if speed_time %}
+      <h4>Estimated Delivery Time: {{ speed_time }} hours</h4>
+    {% endif %}
+{% endif %}
+<div>
+<a href="{% url 'quote' %}">Get Another Quote</a>
+</div>
+<div>
+  <a href="{% url 'create_shipment' %}">Create Shipment</a>
+  </div>
+

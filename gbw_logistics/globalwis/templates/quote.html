@@ -1,0 +1,15 @@
+<form method="POST">
+  {% if 'quote' in request.path %}
+  <h2>Get Quote</h2>
+  {% else %}
+    <h2>Create Shipment</h2>
+  {% endif %}
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if 'quote' in request.path %}
+    <button type="submit">Get Quote</button>
+    {% else %}
+    <button type="submit">Create Shipment</button>
+    {% endif %}
+
+  </form>

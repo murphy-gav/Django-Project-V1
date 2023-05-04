@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Select Packaging</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      // Hide box and envelope fields by default
+      $("#box-fields").hide();
+      $("#envelope-fields").hide();
+      
+      // Show my own package fields by default
+      $("#own-package-fields").show();
+      
+      // When the packaging type is changed
+      $("#packaging_type").change(function(){
+        // Hide all fields
+        $("#own-package-fields").hide();
+        $("#box-fields").hide();
+        $("#envelope-fields").hide();
+        
+        // Show the fields for the selected option
+        if($(this).val() === "own_package") {
+          $("#own-package-fields").show();
+        } else if ($(this).val() === "box") {
+          $("#box-fields").show();
+        } else if ($(this).val() === "envelope") {
+          $("#envelope-fields").show();
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+<h1>Select Packaging</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="packaging_type">Packaging Type:</label>
+        <select id="packaging_type" name="packaging_type">
+        <option value="own_package" selected>My Own Package</option>
+        <option value="envelope_a2">A2 Envelope – 420mm × 594mm</option>
+        <option value="envelope_a5">A5 Envelope – 148mm × 210mm</option>
+        <option value="envelope_a6">A6 Envelope – 105mm × 148mm</option>
+        <option value="envelope_a7">A7 Envelope – 74mm × 105mm</option>
+        <option value="envelope_a9">A9 Envelope – 37mm × 52mm</option>
+        <option value="box_small_cube">Small cube box 7×7×6</option>
+        <option value="box_large_cube">Large cube box 12×12×8</option>
+        <option value="box_shoebox">Shoebox 7×5×14</option>
+        <option value="box_small_side">Small side box 11×2×13</option>
+        <option value="box_medium_side">Medium side box 12×3×14</option>
+        <option value="box_large_side">Large side box 20×5×20</option>
+        <option value="box_extra_large_side">Extra Large side box 40×10×40</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input type="number" name="quantity" class="form-control" id="quantity" min="1" value="1">
+      </div>
+      <div class="form-group">
+      <label for="weight">Weight (lb):</label>
+      <input type="number" name="weight" class="form-control" id="weight" step="0.01" min="0">
+    </div>
+
+    <div id="own-package-fields">
+      <div class="form-group">
+      <label for="length">Length (in):</label>
+      <input type="number" name="length" class="form-control" id="length" step="0.01" min="0">
+      </div>
+      <div class="form-group">
+      <label for="width">Width (in):</label>
+      <input type="number" name="width" class="form-control" id="width" step="0.01" min="0">
+      </div>
+      <div class="form-group">
+      <label for="height">Height (in):</label>
+      <input type="number" name="height" class="form-control" id="height" step="0.01" min="0">
+      </div>
+    </div>
+  <input type="submit" value="Submit">
+</form>

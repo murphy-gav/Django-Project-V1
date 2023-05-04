@@ -1,0 +1,42 @@
+<h2>Manage Shipment</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Tracking Number</th>
+      <th>Ship From</th>
+      <th>Ship To</th>
+      <th>Drop Off Location</th>
+      <th>Pick up Location</th>
+      <th>Weight</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for shipment in shipments %}
+      <tr>
+        <td><h3>{{ shipment.package }}</h3></td>
+        <td>{{ shipment.contact_info.sender_company }}<br>{{ shipment.contact_info.sender_name }}<br>{{ shipment.contact_info.sender_state }}, {{ shipment.origin }}</td>
+        <td>{{ shipment.contact_info.receiver_company }}<br>{{ shipment.contact_info.receiver_name }}<br>{{ shipment.contact_info.receiver_state }}, {{ shipment.destination }}</td>
+        <td>{{ shipment.drop_off_location.name }}<br>{{ shipment.drop_off_location.address }}<br>{{ shipment.drop_off_location.state }}</td>
+        <td>{{ shipment.pick_up_location.name }}<br>{{ shipment.pick_up_location.address }}<br>{{ shipment.pick_up_location.state }}</td>
+        <td>{{ shipment.weight }}</td>
+        <td>{{ shipment.description }}</td>
+        <td>{{ shipment.status }}</td>        
+        <td><!-- action buttons --></td>
+        Created By: {{ shipment.contact_info.sender_email }}
+        <td>
+          <a href="{% url 'edit_shipment' %}">Edit</a> |
+          <a href="{% url 'cancel_shipment' shipment.package %}">Cancel</a>
+        </td>
+      </tr>
+    {% empty %}
+     
+
+      <tr>
+        <td colspan="5">No shipments found.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+

@@ -1,0 +1,160 @@
+<!-- checkout.html -->
+
+<h1>Checkout</h1>
+
+<!-- checkout.html -->
+<form method="post" action="{% url 'checkout' %}">
+    {% csrf_token %}
+    <div>
+      <h2>Shipment details</h2>
+    </div>
+    <div>
+      <h2>Sender information</h2>
+      <div>
+        <label for="{{ form.sender_name.id_for_label }}">Name:</label>
+        <input type="text" class="form-control" id="{{ form.sender_name.id_for_label }}" name="{{ form.sender_name.name }}" value="{{ form.sender_name.initial|default:'' }}" required>
+      </div>
+      <div>
+        <label for="{{ form.sender_company.id_for_label }}">Company:</label>
+        {{ form.sender_company }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.pickup_country.id_for_label }}">Pickup Country:</label>
+        {% if pickup_country %}
+        <input type="text" class="form-control" id="{{ form.pickup_country.id_for_label }}" name="{{ form.pickup_country.name }}" value="{{ pickup_country }}" readonly>
+        {% else %}
+        {{ form.sender_pickup_country }}
+        {% endif %}
+      </div>      
+      <div>
+        <label for="{{ form.sender_address.id_for_label }}">Address:</label>
+        {{ form.sender_address }}
+      </div>
+      <div>
+        <label for="{{ form.sender_address2.id_for_label }}">Address 2:</label>
+        {{ form.sender_address2 }}
+      </div>
+      <div>
+        <label for="{{ form.sender_address3.id_for_label }}">Address 3:</label>
+        {{ form.sender_address3 }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.pickup_zip.id_for_label }}">Pickup Zip:</label>
+        {% if pickup_zip %}
+        <input type="text" class="form-control" id="{{ form.pickup_zip.id_for_label }}" name="{{ form.pickup_zip.name }}" value="{{ pickup_zip }}" readonly>
+        {% else %}
+        {{ form.sender_pickup_zip }}
+        {% endif %}
+      </div>      
+      <div>
+        <label for="{{ form.sender_city.id_for_label }}">City:</label>
+        {{ form.sender_city }}
+      </div>
+      <div>
+        <label for="{{ form.sender_state.id_for_label }}">State:</label>
+        {{ form.sender_state }}
+      </div>
+      <div>
+        <label for="{{ form.sender_email.id_for_label }}">Email:</label>
+        {{ form.sender_email }}
+      </div>
+      <div>
+        <label for="{{ form.sender_phone_type.id_for_label }}">Phone Type:</label>
+        {{ form.sender_phone_type }}
+      </div>
+      <div>
+        <label for="{{ form.sender_phone_code.id_for_label }}">Phone Code:</label>
+        {{ form.sender_phone_code }}
+      </div>
+      <div>
+        <label for="{{ form.sender_phone_number.id_for_label }}">Phone Number:</label>
+        {{ form.sender_phone_number }}
+      </div>
+    </div>
+    <div>
+      <h2>Receiver information</h2>
+      <div>
+        <label for="{{ form.receiver_name.id_for_label }}">Name:</label>
+        {{ form.receiver_name }}
+      </div>
+      <div>
+        <label for="{{ form.receiver_company.id_for_label }}">Company:</label>
+        {{ form.receiver_company }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.delivery_country.id_for_label }}">Delivery Country:</label>
+        {% if delivery_country %}
+          <input type="text" class="form-control" id="{{ form.delivery_country.id_for_label }}" name="{{ form.delivery_country.name }}" value="{{ delivery_country }}" readonly>
+        {% else %}
+        {{ form.receiver_delivery_country }}
+        {% endif %}
+      </div>      
+      <div>
+        <label for="{{ form.receiver_address.id_for_label }}">Address:</label>
+        {{ form.receiver_address }}
+      </div>
+      <div>
+        <label for="{{ form.receiver_address2.id_for_label }}">Address 2:</label>
+        {{ form.receiver_address2 }}
+      </div>
+      <div>
+        <label for="{{ form.receiver_address3.id_for_label }}">Address 3:</label>
+        {{ form.receiver_address3 }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.delivery_zip.id_for_label }}">Delivery Zip:</label>
+        {% if delivery_zip %}
+        <input type="text" class="form-control" id="{{ form.delivery_zip.id_for_label }}" name="{{ form.delivery_zip.name }}" value="{{ delivery_zip }}" readonly>
+        {% else %}
+        {{ form.receiver_delivery_zip }}
+        {% endif %}
+      </div>      
+      <div>
+        <label for="{{ form.receiver_city.id_for_label }}">City:</label>
+        {{ form.receiver_city }}
+      </div>
+      <div>
+        <label for="{{ form.receiver_state.id_for_label }}">State:</label>
+        {{ form.receiver_state }}
+      </div>
+      <div>
+        <label for="{{ form.receiver_email.id_for_label }}">Email:</label>
+        {{ form.receiver_email }}
+      </div>
+      <div>
+        <label for="{{ form.receiver_phone_type.id_for_label }}">Phone Type:</label>
+        {{ form.receiver_phone_type }}
+      </div>
+      <div>
+        <label for="{{ form.receiver_phone_code.id_for_label }}">Phone Code:</label>
+        {{ form.receiver_phone_code }}
+      </div>
+      <div>
+        <label for="{{ form.receiver_phone_number.id_for_label }}">Phone Number:</label>
+        {{ form.receiver_phone_number }}
+      </div>
+      <div>
+        <label for="{{ form.vat_tax_id.id_for_label }}">VAT/Tax ID:</label>
+        {{ form.vat_tax_id }}
+      </div>
+  
+      
+      <!-- Shipment fields -->
+      <h3>Shipment Information</h3>
+      <div>
+        <label for="{{ form.create_shipment.id_for_label }}">Create Shipment:</label>
+        {{ form.create_shipment }}
+      </div>
+      <div>
+        <label for="{{ form.pay.id_for_label }}">Pay:</label>
+        {{ form.pay }}
+      </div>
+      <div>
+        <label for="{{ form.print.id_for_label }}">Print:</label>
+        {{ form.print }}
+      </div>
+  
+      <button type="submit">Submit</button>
+    </form>
+  
+  

@@ -1,0 +1,23 @@
+{% load static %}
+<h2>Tracking Your Shipment!!!</h2>
+<h3>Package Details:</h3>
+
+{% if package %}
+  <p><strong>Package ID:</strong> {{ package.package_id }}</p>
+  <p><strong>Status:</strong> {{ shipment.status }}</p>
+  <p><strong>Sender:</strong> {{ shipment.contact_info.sender_name }}</p>
+  <p><strong>Recipient:</strong> {{ shipment.contact_info.receiver_name }}</p>
+  <p><strong>Pickup Country:</strong> {{ package.pickup_country }}</p>
+  <p><strong>Delivery Country:</strong> {{ package.delivery_country }}</p>
+  <p><strong>Weight:</strong> {{ package.weight }}</p>
+  <p><strong>Height:</strong> {{ package.height }}</p>
+  <p><strong>Width:</strong> {{ package.width }}</p>
+  <p><strong>Length:</strong> {{ package.length }}</p>
+  <p><strong>Image:</strong> <img src="{{ shipment.image }}" alt="{{ shipment.image }}" width="200" height="200"></p>
+  <p><strong>Shipping Type:</strong> {{ shipment.shipping_type }}</p>
+  <p><strong>Description:</strong> {{ shipment.description }}</p>
+  <p><strong>Current Location:</strong> {{ shipment.current_state }}, {{ shipment.current_country }}, {{ shipment.current_zip }}</p>
+  <p><strong>Created At:</strong> {{ package.created_at }}</p>
+{% else %}
+  <p>Package not found</p>
+{% endif %}

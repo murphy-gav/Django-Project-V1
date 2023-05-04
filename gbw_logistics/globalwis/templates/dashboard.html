@@ -1,0 +1,7 @@
+<h1>Dashboard</h1>
+    <h1>Welcome to your dashboard! {{user.username}}</h1>
+    <ul>
+        <li><a href="{% url 'create_shipment' %}">Create New Shipment</a></li>
+        <li><a href="{% url 'profile' %}">My Profile</a></li>
+        <li><a href="{% url 'manage_shipments' %}">Manage Shipments</a></li>
+    </ul>
